@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOEIN — Direction B: Operator Clarity (mockup)</title>
+<!-- Mockup only. All metrics, quotes, and names are placeholders. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --panel: #ffffff;
+    --line: #e3ded4;
+    --ink: #16181d;
+    --ink-dim: #6d6a63;
+    --accent: #e84e0f;
+    --dark: #16181d;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --disp: "Space Grotesk", -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--ink);
+    font-family: var(--disp); font-size: 17px; line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+  a { color: inherit; text-decoration: none; }
+  .micro {
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-dim);
+  }
+
+  nav { border-bottom: 1px solid var(--line); background: var(--bg);
+        position: sticky; top: 0; z-index: 50; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .wordmark { font-family: var(--mono); font-weight: 500; letter-spacing: 0.32em; font-size: 16px; }
+  .wordmark::after { content: "·"; color: var(--accent); margin-left: 6px; }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { font-size: 14.5px; color: var(--ink-dim); }
+  .nav-links a:hover { color: var(--ink); }
+  .btn {
+    display: inline-block; font-size: 15px; font-weight: 500;
+    padding: 12px 24px; background: var(--dark); color: #fff;
+    border-radius: 3px;
+  }
+  .btn:hover { background: #000; }
+  .btn-accent { background: var(--accent); }
+  .btn-accent:hover { background: #c94104; }
+  @media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+
+  .hero { padding: 96px 0 72px; }
+  .hero .micro { color: var(--accent); }
+  .hero h1 {
+    margin-top: 22px;
+    font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+    font-weight: 700; line-height: 1.04; letter-spacing: -0.025em;
+    max-width: 17ch;
+  }
+  .hero p {
+    margin-top: 26px; max-width: 54ch; font-size: 19px; color: var(--ink-dim);
+  }
+  .hero-ctas { margin-top: 38px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .link-cta { font-weight: 500; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
+
+  /* Product panel */
+  .panel-band { padding: 20px 0 100px; }
+  .panel {
+    background: var(--dark); color: #e9e6e0;
+    border-radius: 6px; overflow: hidden;
+    box-shadow: 0 30px 60px -30px rgba(22,24,29,0.45);
+  }
+  .panel-bar {
+    display: flex; justify-content: space-between; padding: 14px 20px;
+    border-bottom: 1px solid #2a2d34;
+  }
+  .panel-bar .micro { color: #8a8781; }
+  .panel-bar .live { color: #3ddc84; }
+  table { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 13px; }
+  th { text-align: left; font-weight: 400; font-size: 11px; letter-spacing: 0.14em;
+       text-transform: uppercase; color: #8a8781; padding: 12px 20px;
+       border-bottom: 1px solid #2a2d34; }
+  td { padding: 13px 20px; border-bottom: 1px solid #22252b; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  .st { font-size: 11px; letter-spacing: 0.1em; padding: 3px 8px; border-radius: 2px; }
+  .st-act { background: rgba(232,78,15,0.18); color: #ff8a54; }
+  .st-res { background: rgba(61,220,132,0.14); color: #3ddc84; }
+  .panel-scroll { overflow-x: auto; }
+
+  section { padding: 90px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); font-weight: 700;
+       letter-spacing: -0.02em; line-height: 1.12; max-width: 24ch; }
+  .sec-sub { margin-top: 16px; color: var(--ink-dim); max-width: 56ch; }
+
+  .feat-grid { margin-top: 54px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .feat {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+    padding: 30px 26px;
+  }
+  .feat .micro { color: var(--accent); }
+  .feat h3 { margin: 14px 0 10px; font-size: 20px; font-weight: 500; }
+  .feat p { font-size: 15px; color: var(--ink-dim); }
+  @media (max-width: 860px) { .feat-grid { grid-template-columns: 1fr; } }
+
+  .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 54px; }
+  .stat { border-left: 3px solid var(--accent); padding-left: 20px; }
+  .stat b { display: block; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; }
+  .stat span { color: var(--ink-dim); font-size: 15px; }
+  @media (max-width: 640px) { .proof { grid-template-columns: 1fr; } }
+
+  .trust { margin-top: 60px; border: 1px solid var(--line); background: var(--panel);
+           border-radius: 6px; display: flex; flex-wrap: wrap; }
+  .trust div { flex: 1 1 200px; padding: 22px 26px; border-right: 1px solid var(--line);
+               font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+               text-transform: uppercase; color: var(--ink-dim); }
+  .trust div:last-child { border-right: 0; }
+  .trust b { display: block; color: var(--ink); margin-bottom: 4px; font-weight: 500; }
+
+  .cta-final { text-align: center; padding: 110px 0; }
+  .cta-final h2 { margin: 0 auto 16px; }
+  .cta-final p { color: var(--ink-dim); margin-bottom: 36px; }
+
+  footer { border-top: 1px solid var(--line); padding: 34px 0; }
+  .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#">NOEIN</a>
+    <div class="nav-links">
+      <a href="#system">System</a>
+      <a href="#deployment">Deployment</a>
+      <a href="#security">Security</a>
+      <a class="btn" href="#contact">Talk to an engineer</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="micro">The operating system for manufacturing</span>
+    <h1>Your ERP, planning files, and floor — finally talking to each other.</h1>
+    <p>
+      Forward-deployed engineers and AI agents run as a single live layer over
+      the systems you already have. Read-only. Off your OT network. Live in weeks.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn btn-accent" href="#contact">Talk to an engineer</a>
+      <a class="link-cta" href="#deployment">How deployment works</a>
+    </div>
+  </div>
+</header>
+
+<div class="panel-band">
+  <div class="wrap">
+    <div class="panel">
+      <div class="panel-bar">
+        <span class="micro live">● LIVE — EXCEPTION QUEUE</span>
+        <span class="micro">PLANT 02 · AGENTS: PLANNING / PROCUREMENT / QUALITY</span>
+      </div>
+      <div class="panel-scroll">
+      <table>
+        <thead><tr><th>ID</th><th>Exception</th><th>Impact</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>PRC-4471</td><td>Supplier PO confirm overdue — bearing housings</td><td>Line 3 · 12-day risk</td><td><span class="st st-act">ACTING</span></td></tr>
+          <tr><td>PLN-1092</td><td>MRP demand spike vs. plan — SKU 88-041</td><td>Reorder breach</td><td><span class="st st-act">ACTING</span></td></tr>
+          <tr><td>PRC-4465</td><td>Alt supplier quoted &amp; confirmed — fasteners</td><td>Saved 9 days</td><td><span class="st st-res">RESOLVED</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <p class="micro" style="margin-top:12px">Illustrative data — mockup placeholder</p>
+  </div>
+</div>
+
+<section id="system">
+  <div class="wrap">
+    <span class="micro">What the agents watch</span>
+    <h2>Exceptions surfaced — and acted on — before they hit the floor.</h2>
+    <div class="feat-grid">
+      <div class="feat">
+        <span class="micro">Planning</span>
+        <h3>Plan breaks, caught early</h3>
+        <p>Demand vs. plan variance, reorder point breaches, and capacity conflicts flagged from your own MRP output.</p>
+      </div>
+      <div class="feat">
+        <span class="micro">Procurement</span>
+        <h3>Late suppliers, chased</h3>
+        <p>Overdue confirmations and lead-time drift tracked from POs and supplier email. Alternates actioned when it matters.</p>
+      </div>
+      <div class="feat">
+        <span class="micro">Quality</span>
+        <h3>Variance on the dock</h3>
+        <p>Incoming lots cross-checked against certs and specs — holds recommended while material is still receivable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="deployment">
+  <div class="wrap">
+    <span class="micro">Deployment</span>
+    <h2>Live in weeks, not quarters. Nothing replaced.</h2>
+    <p class="sec-sub">
+      Forward-deployed engineers connect your systems read-only and stand up
+      your first exception queue. Placeholder metrics below — replace with
+      real deployment numbers.
+    </p>
+    <div class="proof">
+      <div class="stat"><b>~4 wks</b><span>from kickoff to first live exception queue</span></div>
+      <div class="stat"><b>0</b><span>changes required to your ERP or OT network</span></div>
+      <div class="stat"><b>100%</b><span>of system access read-only and logged</span></div>
+    </div>
+    <div class="trust" id="security">
+      <div><b>Read-only</b>Never writes to your systems</div>
+      <div><b>Isolated tenant</b>Encrypted in transit &amp; at rest</div>
+      <div><b>Every access logged</b>Full audit trail</div>
+      <div><b>No training</b>Your data runs live views only</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <div class="wrap">
+    <h2>See your first exception queue.</h2>
+    <p>A forward-deployed engineer will walk your systems with you.</p>
+    <a class="btn btn-accent" href="#">Talk to an engineer</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="micro" style="color:var(--ink)">NOEIN</span>
+    <span class="micro">The operating system for manufacturing</span>
+    <span class="micro">© 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
